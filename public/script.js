@@ -21,7 +21,7 @@ async function analyzeNews(text) {
   loader.style.display = "inline-block";
 
   try {
-    const res = await fetch("/analyze"), {
+    const res = await fetch("https://trueewsai.onrender.com/analyze"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
