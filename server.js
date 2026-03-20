@@ -21,13 +21,11 @@ async function fetchSearchResults(query) {
             }
         });
 
-        const results = response.data.organic_results || [];
-
-return results.map(r => ({
-    title: r.title,
-    snippet: r.snippet,
-    link: r.link
-}));
+        return response.data.organic_results.map(r => ({
+            title: r.title,
+            snippet: r.snippet,
+            link: r.link
+        }));
     } catch (error) {
         console.error("SerpAPI Error:", error.message);
         return [];
@@ -55,13 +53,11 @@ Instructions:
 - Give confidence (0 to 1)
 - Explain clearly
 
-Return ONLY valid JSON. Do not include any extra text before or after JSON.
-
-Strict format:
+Return ONLY JSON:
 {
   "verdict": "true" or "false",
   "confidence": number,
-  "reason": "string"
+  "reason": "explanation"
 }
 `;
 
@@ -82,23 +78,18 @@ Strict format:
 
         const output = response.data.choices[0].message.content;
 
-console.log("🧠 RAW AI OUTPUT:\n", output);
+        let parsed;
 
-// ✅ Extract JSON safely
-let parsed;
-
-try {
-    const jsonMatch = output.match(/\{[\s\S]*\}/);
-    parsed = JSON.parse(jsonMatch[0]);
-} catch (e) {
-    console.log("❌ JSON Parse Failed");
-
-    parsed = {
-        verdict: "unknown",
-        confidence: 0.5,
-        reason: "AI response format error"
-    };
-}
+        try {
+            parsed = JSON.parse(output);
+        } catch (e) {
+            console.log("Raw output:", output);
+            parsed = {
+                verdict: "unknown",
+                confidence: 0.5,
+                reason: "Could not parse AI response"
+            };
+        }
 
 return parsed;
 
