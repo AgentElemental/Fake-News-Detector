@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake News Detector</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-content">
+        <div class="header-left">
+          <div class="header-title">
+            <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <h1>TrueNewsAI</h1>
+          </div>
+          <p class="subtitle">An Fake News Detector</p>
+        </div>
+        <div class="eco-badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="1"></circle>
+            <path d="M12 1v6m0 6v6"></path>
+            <path d="M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24"></path>
+            <path d="M1 12h6m6 0h6"></path>
+            <path d="M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+          </svg>
+          <span>Eco-Friendly</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card">
+      <div class="input-section">
+        <label class="input-label">
+          Enter News Headline or Post
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </label>
+        <textarea 
+          id="news-text" 
+          placeholder="E.g., 'New miracle cure for COVID found in Ayurveda' or 'Election results rigged in Delhi'"
+          class="textarea"
+        ></textarea>
+      </div>
+
+      <button class="analyze-btn" id="analyze-btn">
+  <span id="btn-text">Analyze Content</span>
+  <span id="loader" class="loader" style="display:none;"></span>
+</button>
+
+      <div class="result-section" id="result-section" style="display: none;">
+        <!-- Results will be dynamically added here -->
+      </div>
+    </div>
+
+    <div class="history-card">
+      <div class="history-header">
+        <h2 class="history-title">
+          <svg class="history-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Analysis History
+        </h2>
+        <span class="history-badge" id="history-count">Last 10 analyses</span>
+      </div>
+      <div class="history-content">
+        <button id="clear-history-btn" class="clear-btn">
+  Clear History
+</button>
+        <p class="empty-message" id="empty-message">No analyses yet. Start by analyzing some content.</p>
+        <ul class="history-list" id="history-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
