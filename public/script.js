@@ -15,14 +15,13 @@ async function analyzeNews(text) {
     return;
   }
 
+  // 🔄 START LOADING
   analyzeBtn.disabled = true;
   btnText.innerText = "Analyzing...";
   loader.style.display = "inline-block";
 
   try {
-    const API_URL = "https://trueewsai.onrender.com/analyze";
-
-    const res = await fetch(API_URL, {
+    const res = await fetch("/analyze", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -41,8 +40,9 @@ async function analyzeNews(text) {
 
   } catch (error) {
     console.error(error);
-    alert("Server is waking up, try again in a few seconds.");
+    alert("Error connecting to server");
   } finally {
+    // ✅ STOP LOADING
     analyzeBtn.disabled = false;
     btnText.innerText = "Analyze Content";
     loader.style.display = "none";
