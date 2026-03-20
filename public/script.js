@@ -1,5 +1,3 @@
-fetch("/.netlify/functions/analyze")
-
 // Fake News Detector Script
 const analyzeBtn = document.getElementById('analyze-btn');
 const newsText = document.getElementById('news-text');
